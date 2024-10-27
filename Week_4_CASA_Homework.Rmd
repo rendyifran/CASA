@@ -1,0 +1,27 @@
+---
+title: "Week_4_CASA_Homework"
+output: html_document
+date: "2024-10-27"
+---
+
+```{r setup, include=FALSE}
+library(usethis)
+library(sf)
+library(here)
+```
+
+This is the library section
+
+```{r cars}
+geojson_Data<-st_read(here::here("World_Countries_(Generalized)_9029012925078512962.geojson"))
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
