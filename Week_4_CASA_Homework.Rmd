@@ -34,15 +34,25 @@ gender_inequality_data_clean<-gender_inequality_data_clean%>%
 
 ```
 
-
+Merging the Data
 ```{r}
 final_dataset<-gender_inequality_data_clean%>%
   left_join(geojson_Data,by=c("iso2"="ISO"))
-View(final_dataset)
+final_dataset_clean<-final_dataset%>%
+  filter(!is.na(geometry))
 ```
-
-
+Clean Data
 ```{r}
-?countrycode::countrycode()
+final_dataset_sf<-st_as_sf(final_dataset_clean,crs = 4326)
+final_dataset_sf1<-final_dataset_sf%>%
+  filter(!is.na(hdi_diff) & !st_is_empty(geometry))
 ```
+Plotting
+```{r}
+tmap_mode("view")
+tm_shape(final_dataset_sf1)+ tm_polygons("hdi_diff", title="Gender Inequality Data Difference between 2010 and 2019", palette = "RdYlGn", style="jenks",alpha = 0.8)+ tm_basemap(server="OpenStreetMap")+
+  tm_compass(position = c("left", "bottom"),type="arrow")+
+  tm_scale_bar(position = c("left", "bottom"))+ tm_view(view.legend.position = c("right", "bottom"))
+```
+
 
