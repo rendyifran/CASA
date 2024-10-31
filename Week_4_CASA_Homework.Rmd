@@ -55,4 +55,7 @@ tm_shape(final_dataset_sf1)+ tm_polygons("hdi_diff", title="Gender Inequality Da
   tm_scale_bar(position = c("left", "bottom"))+ tm_view(view.legend.position = c("right", "bottom"))
 ```
 
+```{r}
+hi randy, its zainab! I tried to run your code but my world data is a shp not geojason... change it now - joking!
+```
 
